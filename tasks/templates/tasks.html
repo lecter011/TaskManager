@@ -1,0 +1,59 @@
+{%extends 'layout.html'%}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h1 class="display-4 text-center">TASKS</h1>
+    </div>
+    <div class="d-flex gap-3">
+        {% for task in tasks %}
+        <div class="card text-bg-light mb-3 card-w">
+            <div class="card-header">
+                <strong class="text-uppercase">{{task.title}}</strong>
+                {% if task.is_priority %}
+                <span class="badge text-bg-danger">Prioritary</span> 
+                {% endif %}    
+                {% if task.datecompleted is not None %}
+                <span class="badge text-bg-success">Completed</span>         
+                {% endif %}    
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-capitalize">{{task.title}}</h5>
+                <p class="card-text">{{task.description}}</p>
+                <span>
+                    <strong>Created on:</strong>
+                    <p>{{task.created_on}}</p>
+                </span>
+                {% if task.datecompleted is not None %}
+                <span>
+                    <strong>Completed on:</strong>
+                    <p>{{task.datecompleted | date:'M j Y'}}</p>
+                </span>
+                {% endif %}
+                <a class="btn btn-outline-secondary" href="{%url 'detail_task' task.id%}">Edit</a>
+
+            </div>
+        </div>
+        {% endfor %}
+      
+    <!--<ul>
+        {% for task in tasks %}
+        <li>
+            <a href="{%url 'detail_task' task.id%}">
+            {% if task.is_priority %}
+            <strong>{{task.title}}</strong>
+            {% else %}
+            <h3>{{task.title}}</h3>
+            {% endif %}    
+            <p>{{task.user.username}}</p>
+            <p>{{task.description}}</p>
+            <p>{{task.created_on}}</p>
+            <p>{{task.datecompleted | date:'M j Y'}}</p>
+            </a>
+            </li>
+        {% endfor %}
+        </ul>-->
+</div>
+
+</div>
+{% endblock %}

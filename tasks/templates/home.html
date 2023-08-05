@@ -1,0 +1,14 @@
+{% extends 'layout.html' %} {% block content %}
+  <section class="card card-body text-center p-5">
+    <h1 class="display-1">Django task manager</h1>
+
+    <p class="lead">This is a simple task manager built with Django.</p>
+
+    {% if not user.is_authenticated %}
+      <div class="text-center gap-3">
+        <a class="btn btn-primary" href="{% url 'signin' %}">Sign in</a>
+        <a class="btn btn-primary" href="{% url 'signup' %}">Sign up</a>
+    </div>
+    {% endif %}
+  </section>
+{% endblock %}

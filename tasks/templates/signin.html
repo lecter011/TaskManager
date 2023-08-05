@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form method="POST" class="card card-body">
+            {% if not user.is_authenticated %}
+            <h1 class="display-4 text-center">SIGN IN</h1>
+            {% csrf_token %}            
+                <div class="mb-3">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" class="form-control" placehoder="Write your username">
+                </div>
+                <div class="mb-3">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" class="form-control" placehoder="Write your password">
+                </div>
+    
+                <button class="btn btn-primary">Sign in</button>
+            {% else %}
+                <h1 class="display-5 text-center">Ups! You are already signed in <span class="text-primary">:)</span></h1>
+            {% endif %}
+            
+    
+            <p style="color: red">{{error}}</p>
+            </form>
+        </div>
+    </div>
+    <p style="color:red">{{ error }}</p>
+</form>
+{% endblock %}
